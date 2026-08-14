@@ -1,5 +1,6 @@
 [book]
-title = "Blackwall"
-authors = ["Teague M"]
+title = "BlackwallDocs"
+authors = ["mizutani"]
+description = "Proposal for construction of the Blackwall network"
 language = "en"
-description = "A detailed guide to the services and content hosted within the Blackwall domain."
+text-direction = "ltr"
