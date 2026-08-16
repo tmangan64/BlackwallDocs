@@ -16,6 +16,30 @@ gantt, sankey and treeview maybe
 
 ---
 
-## Rules
+### Caduceus
 
-All hosts have at least one NVMe drive which runs the operating system for the host. Non-negotiable
+Manga/Book reader synced to media server
+
+### Canto
+
+Development Cyberdeck
+
+### Desk Display
+
+Similar to Spotify Car/Desk Thing
+
+### Hermes
+
+AI Auto-trader based off of Acai
+
+### Orpheus
+
+DIY Audio Player
+
+### Havenfell
+
+Top down souls-like RPG
+
+### Frontier
+
+FPS Bedwars game
