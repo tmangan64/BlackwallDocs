@@ -4,3 +4,13 @@ authors = ["mizutani"]
 description = "Proposal for construction of the Blackwall network"
 language = "en"
 text-direction = "ltr"
+
+[preprocessor]
+
+[preprocessor.mermaid]
+command = "mdbook-mermaid"
+
+[output]
+
+[output.html]
+additional-js = ["mermaid.min.js", "mermaid-init.js"]

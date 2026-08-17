@@ -4,6 +4,8 @@ This page outlines the hosts within the Blackwall network. Each host serves a di
 
 This logic stems from the original idea. A Beelink ME Pro with an N150 processor was intended to be a well-rounded home server. However, where it attempted to be a jack-of-all-trades, it became a master of none.
 
+Instead, a nixos-based multi-host config will coordinate multiple completely separate machines, allowing for the best use of their hardware. This means a GPU-heavy device could host LLM software while an enterprise Proliant-style device could hold most the network's storage capacities. Other future requirements might include a Home Assistant hub and a VM host for security experiments.
+
 | Hostname | Purpose                       | Hardware            |
 | -------- | ----------------------------- | ------------------- |
 | cynosure | Control and monitoring node   | Beelink ME Pro N150 |
@@ -13,4 +15,4 @@ This logic stems from the original idea. A Beelink ME Pro with an N150 processor
 | kabuki   | Reserved name for future host | TBD                 |
 
 > [!TIP]
-> Each hostname comes from the world of Cyberpunk 2077. The 'Blackwall' is a firewall intended to keep rogue AIs trapped in the old Internet. Mikoshi is a data fortress owned by Arasaka and Cynosure was Miltech's competitor. Izanagi is an access point to Mikoshi while the Black Sapphire is skyscraper within Dogtown.
+> Each hostname comes from the world of Cyberpunk 2077. Mikoshi is a data fortress owned by Arasaka and Cynosure was Miltech's competitor. Izanagi is an access point to Mikoshi while the Black Sapphire is skyscraper within Dogtown.
