@@ -67,6 +67,19 @@ const sidebars: SidebarsConfig = {
         'hardware/networking',
       ],
     },
+    {
+      type: 'category',
+      label: 'AI',
+      link: {
+        type: 'doc',
+        id: 'ai/index',
+      },
+      items: [
+        'ai/hardware',
+        'ai/hosting',
+        'ai/protocols',
+      ],
+    },
     'notes',
   ],
 };

@@ -41,7 +41,7 @@ export default function Home(): React.JSX.Element {
             <span style={{ fontSize: '0.9rem', opacity: 0.9 }}>Infrastructure & NixOS</span>
           </Link>
           <Link
-            to="/development/intro"
+            to="/frontier/intro"
             style={{
               display: 'flex',
               flexDirection: 'column',
@@ -54,7 +54,7 @@ export default function Home(): React.JSX.Element {
               transition: 'transform 0.2s',
             }}
           >
-            <span style={{ fontSize: '1.5rem', fontWeight: 'bold' }}>Development</span>
+            <span style={{ fontSize: '1.5rem', fontWeight: 'bold' }}>Frontier</span>
             <span style={{ fontSize: '0.9rem', opacity: 0.9 }}>Projects & Workflows</span>
           </Link>
         </div>

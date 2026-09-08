@@ -51,10 +51,10 @@ const config: Config = {
     [
       '@docusaurus/plugin-content-docs',
       {
-        id: 'development',
-        path: 'development',
-        routeBasePath: 'development',
-        sidebarPath: './sidebarsDevelopment.ts',
+        id: 'frontier',
+        path: 'frontier',
+        routeBasePath: 'frontier',
+        sidebarPath: './sidebarsFrontier.ts',
       },
     ],
   ],
@@ -78,9 +78,9 @@ const config: Config = {
         {
           type: 'doc',
           docId: 'intro',
-          docsPluginId: 'development',
+          docsPluginId: 'frontier',
           position: 'left',
-          label: 'Development',
+          label: 'Frontier',
         },
         {
           href: 'https://github.com/tmangan64/BlackwallDocs',
