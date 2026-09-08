@@ -2,35 +2,20 @@
 
 Documentation for Blackwall and other projects, built with [Docusaurus](https://docusaurus.io/).
 
-## Dev
+***
 
-To install and run:
-
-```bash
-npm install
-npm run start
-```
-
-# Adding New Projects
+### Adding new projects
 
 To add a new documentation tab, follow these steps:
 
-### 1. Create the content directory
-
-Create a new folder at the root level with your documentation content:
-
+1. Create a new folder at the root level with your documentation content:
 ```
 new-project/
   intro.md
-  ...
 ```
-
 Each docs folder needs at least an `intro.md` file.
 
-### 2. Create a sidebar configuration file
-
-Create a new file `sidebarsMyNewDocs.ts` at the root:
-
+2. Create a new file `sidebarsMyNewDocs.ts` at the root
 ```typescript
 import type { SidebarsConfig } from "@docusaurus/plugin-content-docs";
 
@@ -44,10 +29,7 @@ const sidebars: SidebarsConfig = {
 export default sidebars;
 ```
 
-### 3. Register the plugin in docusaurus.config.ts
-
-Add a new entry to the `plugins` array:
-
+3. Add a new entry to the `plugins` array:
 ```typescript
 plugins: [
   // ... existing plugins
@@ -63,10 +45,7 @@ plugins: [
 ],
 ```
 
-### 4. Add a navbar item
-
-Add an entry to `themeConfig.navbar.items`:
-
+4. Add an entry to `themeConfig.navbar.items`:
 ```typescript
 navbar: {
   items: [
@@ -81,12 +60,3 @@ navbar: {
   ],
 },
 ```
-
-### 5. Build and verify
-
-```bash
-npm run build
-npm run start
-```
-
-Ensure a hard refresh is performed to clear browser cache and view updated page.
