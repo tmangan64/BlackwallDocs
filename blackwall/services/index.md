@@ -6,15 +6,14 @@ sidebar_position: 1
 
 # Services
 
-## Discussions
-
 ### Documents
 
 There are many documents in life so document management software is required. This must either be easily interfaced with or connected to the chosen email client for usability. 
 Documents also require signing so will need document signing software. Should likely purchase digital scanner and begin keeping receipts etc for later categorising. 
 Adjacent to this is finance where 'ActualBudget' can supposedly connect to Monzo and receive transaction data.
 
-Furthermore, will need to develop infrastructure for the kobo reader caduceus project. This includes some way to obtain comics, manga and books and send them to a physical kobo reader. 
+Furthermore, will need to develop infrastructure for the kobo reader caduceus project. This includes some way to obtain comics, manga and books and send them to a physical kobo reader.
+Similar to this is 'hammer.ink' which works for literature writing.
 
 ### Documentation
 
@@ -41,6 +40,32 @@ For Nextcloud-adjacent apps, there's:
 - News
 - Office
 - Tables
+
+***
+
+# Non-server
+
+This is not for server-based services accessed via a browser but instead for actual software to be run on the client device (elysia, canto etc)
+It should be noted there is a commitment to adwaita gnome.
+
+### Gnome Extensions:
+- Dash to dock
+- Blur my shell
+- Vitals
+- App menu maybe
+- GSConnect
+- OpenWeather
+- Clipboard Indicator
+- Just Perfection
+- Removable Drive menu
+
+### Shell:
+Chosen shell is fish and chosen terminal is kitty
+- cbonsai
+- Aliases
+- arttime
+- broot
+- 
 
 ***
 
@@ -90,6 +115,8 @@ For Nextcloud-adjacent apps, there's:
 | Ganymede8 | Twitch VOD Archiver |
 | AFFiNE | Collaberative documents |
 | DocuSeal | Document signing |
+| Floppy | Media tracking |
+
 
 
 ## Future LLM Host
