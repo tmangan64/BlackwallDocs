@@ -1,0 +1,18 @@
+[book]
+title = "BlackwallDocs"
+authors = ["mizutani"]
+description = "Multi-host modular NixOS network documentation"
+language = "en"
+text-direction = "ltr"
+src = "src"
+
+[build]
+build-dir = "book"
+# fail loudly on a SUMMARY.md entry with no file behind it
+create-missing = false
+
+[output.html]
+default-theme = "navy"
+preferred-dark-theme = "navy"
+git-repository-url = "https://github.com/tmangan64/BlackwallDocs"
+edit-url-template = "https://github.com/tmangan64/BlackwallDocs/edit/main/src/{path}"
