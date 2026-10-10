@@ -3,8 +3,6 @@
 - [Introduction](./intro.md)
 
 - [Hosts](./hosts/index.md)
-  - [Cynosure](./hosts/cynosure.md)
-  - [Izanagi](./hosts/izanagi.md)
 - [Architecture](./architecture/index.md)
   - [Topology](./architecture/topology.md)
   - [NixOS](./architecture/nixos.md)

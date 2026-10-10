@@ -2,7 +2,7 @@
 
 This page details the architecture rules for the Blackwall server and all hosts involved.
 
-## Rules
+### Rules
 
 1. Every host will have a single NVMe drive reserved for the OS.
 2. Every password, API key or secret is to be stored via sops-nix.
