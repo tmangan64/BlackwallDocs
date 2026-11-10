@@ -1,67 +1,53 @@
 # BlackwallDocs
 
-Documentation for Blackwall and other projects, built with [mdBook](https://rust-lang.github.io/mdBook/).
+## mdbook Documentation
 
-Published to <https://docs.blackwall.cam> by `.github/workflows/deploy.yml` on
-every push to `main`.
+Documentation for Blackwall and adjacent projects, built with [mdBook](https://rust-lang.github.io/mdBook/). Published to <https://docs.blackwall.cam> via GitHub pages.
 
-## Development
-
-The repo ships a [devenv](https://devenv.sh/) shell with `mdbook` already on
-`PATH`. With direnv installed, `cd` into the repo; otherwise run `devenv shell`.
-
-| Command | Action                                     |
-| ------- | ------------------------------------------ |
-| `dev`   | serve with live reload and open a browser  |
-| `serve` | serve with live reload                     |
-| `build` | build into `book/`                         |
-| `clear` | delete `book/`                             |
-
-`devenv up` also runs the dev server.
-
-Without devenv, install [mdBook](https://rust-lang.github.io/mdBook/guide/installation.html)
+For NixOS systems, the repo ships a [devenv](https://devenv.sh/) shell with mdbook already on
+PATH. With direnv installed, `cd` into the repo; otherwise run `devenv shell`. Without devenv, install [mdBook](https://rust-lang.github.io/mdBook/guide/installation.html)
 and run `mdbook serve`.
 
-## Layout
+# Blackwall v1 - Cynosure
 
-```
-book.toml          # mdBook configuration
-src/
-  SUMMARY.md       # table of contents - every page must be listed here
-  index.md         # landing page
-  CNAME            # custom domain, copied verbatim into the build
-  blackwall/       # Blackwall section
-  frontier/        # Frontier section
-```
+This is the current stage of the project's development. It is a Beelink ME N150 Pro (known as Cynosure hereon) with a 1TB NVMe and 1TB SATA HDD. It hosts multiple services from Arr* suite to Nextcloud and other typical self-hosted services.
 
-## Adding a page
+The problem is it's a 'jack of all trades, master of none' device and I'm unable to run dedicated long-term storage on a single device in this way. I can't replace parts as easy and can't install that many hard drives total.
 
-1. Create the markdown file under the relevant section directory.
-2. Add it to `src/SUMMARY.md`. Pages not listed there are not built —
-   `create-missing = false` means a `SUMMARY.md` entry with no file behind it
-   fails the build rather than generating a blank page.
+# Blackwall v2 - Rework
 
-Nest a page under another by indenting its `SUMMARY.md` bullet by two spaces.
+The current goal is to align the architecture of the Cynosure host with that of a more permanent, modular, sustainable system that can be easily expanded upon in future. It involves installing additional drives and 'maxxing' out the device, buying time until I need to expand to more devices. I will also want to host the network stack and perhaps connect an Access Point to the device, allowing it to host it's own more secure network but this is a future endeavour.
 
-## Adding a section
+The device has 3x NVMe slots, 2x 3.5" SATA HDD slots, 1x 2.5 GHz Ethernet port and 1x 5 Ghz Ethernet port, running NixOS.
 
-Sections are mdBook [parts](https://rust-lang.github.io/mdBook/format/summary.html).
-Create a directory under `src/`, then add a `# Section Name` header in
-`src/SUMMARY.md` followed by that section's pages:
+## To-do list
 
-```markdown
-# My New Section
+Tailscale security (auto update, grants, groups and tags, webhook alerts, tailscale lock etc)
 
-- [Introduction](./my-new-section/intro.md)
-```
+RSS feed for security bulletins, updates and blogs
 
-## Markdown notes
+Define access and recovery path for each service. Perhaps using a mermaid diagram.
 
-- Footnotes use `[^name]` with a matching `[^name]: text` definition.
-- mdBook has no admonition syntax; use a blockquote with a bold label.
-- Diagrams are not rendered. `src/blackwall/architecture/topology.md` holds a
-  ` ```mermaid ` block that currently displays as source. To render it, add
-  [mdbook-mermaid](https://github.com/badboy/mdbook-mermaid) to `devenv.nix`
-  and the deploy workflow, run `mdbook-mermaid install .`, then add
-  `additional-js = ["mermaid.min.js", "mermaid-init.js"]` under `[output.html]`
-  and a `[preprocessor.mermaid]` section to `book.toml`.
+Token2 PIN+ Release3.3 USB-A hardware key is arriving soon
+
+SSH Session Recording
+
+Monitoring/security software installation:
+- Prometheus
+- Zabbix
+- Grafana
+- UptimeKuma
+- CrowdSec
+
+NixOS deployment (colmena?, auto-importing modules etc)
+
+Custom and aligned branding for all services (Perhaps a style-guide?)
+
+Move API keys in sops-nix
+
+Endpoints are reduced
+
+Declerative, extendable user accounts
+
+Discoverable .nix modules (import.nix?)
+

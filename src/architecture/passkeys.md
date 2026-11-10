@@ -1,4 +1,4 @@
-# SSH
+# Passkeys
 
 There are `2` SSH keys involved in the Blackwall network.
 
