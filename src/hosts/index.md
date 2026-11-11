@@ -6,6 +6,8 @@ A multi-host modular NixOS config can cordinate multiple completely separate mac
 
 Names have already been reserved for hosts. Currently, the Beelink's hostname is `blackwall` as it follows the earlier mentioned original plan for the server. When there are finally multiple devices on the network, the device will be recommissioned as `cynosure`.
 
+The rename therefore belongs to `v3`, alongside Izanagi — `v2` leaves the hostname alone. It is referred to as Cynosure throughout these pages regardless, since that is its role.
+
 | Hostname | Purpose                       | Hardware             |
 | -------- | ----------------------------- | -------------------- |
 | cynosure | Control and monitoring node   | Beelink ME Pro N150  |
@@ -14,29 +16,38 @@ Names have already been reserved for hosts. Currently, the Beelink's hostname is
 | sapphire | Reserved name                 | TBD                  |
 | kabuki   | Reserved name                 | TBD                  |
 
-## Blackwall v2 - Cynosure
+## Blackwall v2 - Rework
 
-`v2` of the project involves an overhaul of the current Cynosure host.
+`v2` of the project involves an overhaul of the current Cynosure host. The step-by-step
+sequence, with prerequisites and verification for each stage, is in [Plan](../plan.md).
 
 The Cynosure host will take use FOSS software such as Prometheus, Uptime Kuma and Grafana for  monitoring the overall status and health of systems and services. 
 
-I've read about Colmena which supposedly lets you declare the state of multiple machines from a single config instead of having to remote into each node to rebuild. I'm not sure how it works yet but Cynosure is likely the device that would control the deployments of other nodes.
+I've read about Colmena which supposedly lets you declare the state of multiple machines from a single config instead of having to remote into each node to rebuild. I'm not sure how it works yet but Cynosure is likely the device that would control the deployments of other nodes. It is adopted in `v2` while there is still only one host, so that `v3` adds a machine to a working pipeline rather than building both at once.
 
 The following software has been designated as likely to benefit from running on this host.
 
-| Software               | Purpose                                                             |
-|------------------------|---------------------------------------------------------------------|
-| Prometheus             | Metrics scraping, storage and PromQL query engine                   |
-| Grafana                | Dashboards and unified alerting                                     |
-| Uptime Kuma            | Service, endpoint and TLS certificate availability checks           |
-| CrowdSec               | Host intrusion detection with shared threat intelligence            |
-| Authentik              | Single sign-on and identity provider                                |
-| Caddy                  | Reverse proxy, TLS termination, single ingress point                |
-| Tailscale or Headscale | Remote access without exposed ports                                 |
-| sops-nix               | Encrypted secrets management                                        |
-| Colmena                | Fleet configuration and deployment. Colmena if blackwall runs NixOS |
-| Vaultwarden            | Self-hosted password manager and secret vault                       |
-| AdGuard Home           | Local DNS filtering and adblocking                                  |
+| Software      | Purpose                                                   |
+|---------------|-----------------------------------------------------------|
+| Prometheus    | Metrics scraping, storage and PromQL query engine         |
+| Grafana       | Dashboards and unified alerting                           |
+| Uptime Kuma   | Service, endpoint and TLS certificate availability checks |
+| CrowdSec      | Host intrusion detection with shared threat intelligence  |
+| Kanidm        | Single sign-on and identity provider                      |
+| oauth2-proxy  | Front-door gate for services with no OIDC support         |
+| Caddy         | Reverse proxy, TLS termination, single ingress point      |
+| Tailscale     | Remote access without exposed ports                       |
+| sops-nix      | Encrypted secrets management                              |
+| Colmena       | Fleet configuration and deployment                        |
+| Vaultwarden   | Self-hosted password manager and secret vault             |
+| AdGuard Home  | Local DNS filtering and adblocking                        |
+| OpenZFS       | Mirrored pool, datasets, snapshots, compression           |
+
+Kanidm rather than Authentik: it provisions persons, groups and OAuth2 clients
+declaratively from the NixOS config, which is what the
+[architecture rule](../architecture/index.md) requiring the config to be the source of
+truth actually demands. Authentik's users and applications are configured through its
+web UI, which is state no rebuild reconstructs.
 
 ## Blackwall v3 - Izanagi
 
@@ -44,7 +55,9 @@ With the arrival of a second host, we can begin to split software between contro
 
 In order to process so much information at once and store it all safely, I'll first likely need an server rack with enough space for all hosts. 19" servers are commong so 18U should be sufficient.
 
-This server will host critical irreplacable data such as passwords and personal information. The minimum launchable node should run RAIDZ-1 (mirror + parity + ZFS pooling) with the goal to reliably maintain important data in an economy where storage drives are increasingly expensive; double-parity has even been considered. 
+This server will host critical irreplacable data such as passwords and personal information. The goal is to reliably maintain important data in an economy where storage drives are increasingly expensive.
+
+The intended layout is one pool with a single `raidz2` vdev of 6 identical drives: any two can fail, and roughly two thirds of raw capacity is usable. Double parity rather than single because resilvering a large drive takes long enough that a second failure during the rebuild is a real risk, not a theoretical one. Logical separation comes from datasets on that one pool, not from multiple pools — a second pool pays for parity twice. Note that `raidz1` is single-parity striping, not "mirror plus parity"; mirrors and RAIDZ are different vdev types, covered in [RAID1](../storage/raid.md).
 
 | Hardware          | Requirements                 |
 |-------------------|------------------------------|

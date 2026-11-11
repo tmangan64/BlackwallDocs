@@ -20,34 +20,13 @@ The current goal is to align the architecture of the Cynosure host with that of 
 
 The device has 3x NVMe slots, 2x 3.5" SATA HDD slots, 1x 2.5 GHz Ethernet port and 1x 5 Ghz Ethernet port, running NixOS.
 
-## To-do list
+The phased implementation plan lives in [`src/plan.md`](./src/plan.md), published at
+<https://docs.blackwall.cam/plan.html>. It supersedes the to-do list that used to sit
+here — every item from it is mapped to a phase in the traceability table at the bottom of
+that page.
 
-Tailscale security (auto update, grants, groups and tags, webhook alerts, tailscale lock etc)
-
-RSS feed for security bulletins, updates and blogs
-
-Define access and recovery path for each service. Perhaps using a mermaid diagram.
-
-Token2 PIN+ Release3.3 USB-A hardware key is arriving soon
-
-SSH Session Recording
-
-Monitoring/security software installation:
-- Prometheus
-- Zabbix
-- Grafana
-- UptimeKuma
-- CrowdSec
-
-NixOS deployment (colmena?, auto-importing modules etc)
-
-Custom and aligned branding for all services (Perhaps a style-guide?)
-
-Move API keys in sops-nix
-
-Endpoints are reduced
-
-Declerative, extendable user accounts
-
-Discoverable .nix modules (import.nix?)
+In short, `v2` delivers the parts that are expensive to retrofit: a mirrored ZFS pool with
+a real dataset layout, a closed perimeter, Kanidm with hardware keys, and monitoring that
+proves the rest works. The custom domain, public certificates and the VPS proxy are held
+back to `v3`, where they land alongside Izanagi.
 
