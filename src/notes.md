@@ -45,4 +45,128 @@ You can see I'll clearly want to logically separate my data and would like the a
 
 **A:** This contradicts your Hosts page, which lists 18U and 19" as hard requirements — if the rack is out, update that table first. Best option is a tower/rack convertible 4U (Supermicro SC743/745): 8 hot-swap bays, full ATX, quiet, tower now and rackable later. Compact alternative is a NAS cube (Jonsbo N3, Fractal Node 304), but ITX means the HBA takes your only slot, so no transcode GPU. Mostly though, your modularity already lives at the host layer — Cynosure is a mini-PC — so one quiet drive box plus mini-PCs gives you what a modular chassis would.
 
-6. My desktop computer uses a Coolermaster NR200P v3 with a 4070ti, 32GB of RAM and 2TB NVMe. What about a single server cabinet containing not only the full Blackwall network but also my desktop computer, then I situate the cabinet near my desk. Are there benefits to 
+6. My desktop computer uses a Coolermaster NR200P v3 with a 4070ti, 32GB of RAM and 2TB NVMe. What about a single server cabinet containing not only the full Blackwall network but also my desktop computer, then I situate the cabinet near my desk. Are there benefits to
+
+***
+
+AI-Assisted Game Development Workflow
+Objective
+
+Build a model-agnostic AI development system to develop and maintain a Godot 4 multiplayer game.
+
+The system should accept human instructions, investigate the existing project, plan and implement changes, run tests, diagnose failures and iteratively correct its work until all acceptance criteria are met.
+
+The human retains control over game design, architectural decisions and final approval.
+
+1. Core Architecture
+
+The system consists of five components:
+
+Orchestrator (Python): Controls the development workflow, manages tasks, agents, iterations and completion criteria.
+Knowledge Base (Markdown): Stores project instructions, architecture, coding standards, game design and development constraints.
+Context Retrieval: Retrieves relevant source code, documentation, dependencies and previous decisions. Graphify will provide codebase relationship analysis.
+Model / Agent Layer: Uses interchangeable LLMs for planning, implementation, debugging and code review.
+Development Tools: Provides Git, Godot, MCP integrations, automated testing and build validation.
+2. Development Workflow
+text
+Human Input
+    |
+    v
+Load Markdown Instructions
+    |
+    v
+Gather Relevant Context
+    |
+    v
+Planning Agent
+    |
+    v
+Human Feedback / Approval
+    |
+    v
+Implementation Agent
+    |
+    v
+Godot + Automated Tests
+    |
+    v
+Review Results
+    |
+    +---- Failed ---> Diagnose / Correct / Retest
+    |                              |
+    |                              v
+    +-------------------------- Repeat
+    |
+    v
+All Criteria Satisfied
+    |
+    v
+Human Final Approval
+    |
+    v
+Merge Changes / Update Documentation
+
+
+The orchestrator controls the loop. Models perform specialised tasks but do not independently control the development lifecycle.
+
+3. Model Independence
+
+All LLM communication must pass through a standardised model interface.
+
+Potential technologies:
+
+LiteLLM: Unified API and model routing.
+Ollama / llama.cpp: Local model inference.
+Cloud providers: Access to more capable models when required.
+llmfit: Evaluate local models against available hardware.
+
+Models should be selectable by task complexity and capability. Replacing a model must not require changing project instructions, agent definitions or workflow logic.
+
+4. Agents
+
+Initially, use four logical roles:
+
+Planner: Investigates requirements, retrieves context and produces implementation plans.
+Implementer: Writes and modifies code according to approved plans.
+Reviewer: Independently evaluates code quality, architecture and security.
+Debugger: Analyses test failures and proposes corrections.
+
+These do not initially need to be separate autonomous processes. The orchestrator can assign different models and instructions to each role.
+
+5. Development Infrastructure
+Component	Proposed technology
+Orchestrator	Python
+Model abstraction	LiteLLM
+Local inference	Ollama / llama.cpp
+Instructions	Markdown
+Codebase intelligence	Graphify
+Editor integration	Godot AI / MCP
+Game engine	Godot 4
+Version control	Git
+Testing	Godot headless + GUT
+CI/CD	GitHub Actions
+6. Essential Principles
+Model and provider independence.
+Human-directed development and approval.
+Context retrieval rather than loading the entire codebase.
+Explicit implementation plans and acceptance criteria.
+Isolated Git branches or worktrees for AI changes.
+Automated testing and regression detection.
+Bounded correction loops with human escalation.
+Persistent task state independent of model conversations.
+Documentation and architectural decisions maintained in version control.
+No merging or publishing without human approval.
+7. Initial Implementation Priority
+
+Build the system incrementally:
+
+Python orchestrator and model abstraction.
+Markdown instruction and knowledge system.
+Single-agent implementation workflow.
+Godot/MCP integration and automated testing.
+Iterative debugging and correction loop.
+Graphify and contextual retrieval.
+Independent review and multiple agent roles.
+Model routing, cost tracking and local inference optimisation.
+
+End goal: A persistent, model-independent development pipeline where human input determines what to build, AI handles investigation and implementation, and deterministic tooling verifies the result.
